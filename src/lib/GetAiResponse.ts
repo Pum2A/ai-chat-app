@@ -6,7 +6,7 @@ const hfApiKey = import.meta.env.VITE_HUGGING_FACE_API_KEY;
 const GetAiResponse = async (userMessage: string) => {
   try {
     const response = await axios.post(
-      "https://api-inference.huggingface.co/models/gpt2", // Hugging Face model URL
+      "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct", // Hugging Face model URL
       { inputs: userMessage },
       {
         headers: {
