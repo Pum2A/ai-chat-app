@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useRef } from "react";
 
 interface Message {
   id: number;
@@ -11,6 +12,12 @@ interface ChatWindowProps {
 }
 
 const ChatWindow: React.FC<ChatWindowProps> = ({ messages }) => {
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <div className="p-4 h-96 overflow-y-scroll bg-gray-100 rounded-lg">
       {messages.map((message) => (
@@ -25,6 +32,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ messages }) => {
           {message.text}
         </div>
       ))}
+      <div ref={chatEndRef} /> {/* This div will act as the scroll target */}
     </div>
   );
 };
